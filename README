@@ -1,0 +1,42 @@
+Authors: Angelo Borsotti
+
+This program contains the implementation of the ELR(1) parser algorithm 2, as described
+in the paper: Fast Deterministic Parsers for Transition Networks, A. Borsotti,
+L. Breveglieria, S. Crespi Reghizzia, A. Morzenti.
+
+Requires software
+
+    The program requires Java 8, Oracle.
+
+Installation
+
+    There is no need to install it, the program can be run directly from a command prompt
+    once the zip package has been unzipped in a folder.
+
+Run
+
+    java -jar elr1.jar grammar text /out=tree
+
+    where:
+
+    grammar:  file containing the grammar, defaulting to .bnf, required
+    text:     file containing the text to be parsed, defaulting to .txt, required
+    tree:     output file containing the parse tree, defaulting to .html, optional
+
+    The program analyzes first the grammar, and it determines if it is formally correct
+    and if it satisfies the ELR(1) conditions. In case the grammar does not, the program
+    terminates issuing an error message.
+    The program parses then the text according to the grammar, and if it recognizes the text
+    it generates a parse tree in html form, otherwise emits a message telling that the
+    text has not been recognized.
+
+Grammar
+
+    The first rule is that of the axiom nonterminal.
+    Rules have the form
+
+         <non-terminal> ::= sequence of non-terminals, terminals and groups, possibly
+                            followed by alternative rules, separated by "|";
+
+    Groups are enclosed in curly-brackets ( { and } ), possibly followed by * or +. Optional
+    groups are enclosed by square brackets ( [ and ] ).
